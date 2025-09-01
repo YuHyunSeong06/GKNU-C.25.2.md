@@ -23,6 +23,8 @@ void main() {
 ```
 
 ### OpenGL 기반의 raylib를 통한 창 띄우기
+##### NuGet에서 raylib를 다운받을 수 있다. 
+##### 프로젝트 -> 속성 -> 링커 -> 시스템 ( 창 window) -> 고급 -> 진입점(mainCRTStarup)
 ```c
 #include "raylib.h"
 
