@@ -82,6 +82,7 @@ void main(){
 }
 ```
 ##### 다음 코드를 입력 -> dir 입력해 디렉토리 확인 -> cl add.c 입력해 컴파일러 생성 -> 코드 변경
+##### GKNU를 5번 출력하고 각 순번을 뒤에 매기는 코드
 ```c
 #include <stdio.h>
 
@@ -92,4 +93,38 @@ void main(){
 	}
 }
 ```
-##### GKNU를 5번 출력하고 각 순번을 뒤에 매기는 코드
+##### 변형 1
+```c
+#include <stdio.h>
+
+void main(){
+	int i=1;
+	for(;;i++){
+		printf("GKNU%d\n",i);
+		if(i>5) break;
+	}
+}
+```
+##### 변형 2
+```c
+#include <stdio.h>
+
+void main(){
+	int i=1;
+	for(;;){
+		printf("GKNU%d\n",i);
+		if(++i>5) break;
+	}
+}
+```
+##### while을 통한 변형 1
+```c
+#include <stdio.h>
+
+void main(){
+	int i=0;
+	while(i++<5){
+		printf("GKNU%d\n",i);
+	}
+}
+```
