@@ -128,3 +128,29 @@ void main(){
 	}
 }
 ```
+### OpenGL을 통한 하늘에서 원이 떨어지고 바닥에 도달하면 처음으로 돌아가는 코드
+```c
+#include "raylib.h"
+
+int main(void)
+{
+    InitWindow(800, 450, "raylib [core] example - basic window");
+
+    int h = 0;
+    SetTargetFPS(144);
+
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        // DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawCircle(400, h++, 120, GREEN);
+        if (h > 450)h = 0;
+        EndDrawing();
+    }
+
+    CloseWindow();
+
+    return 0;
+}
+```
