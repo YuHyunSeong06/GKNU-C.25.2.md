@@ -59,6 +59,7 @@ main.exe // 실행
 ## WSL(Windows Subsystem for Linux)
 #### https://github.com/jcshim/deepc/blob/main/01_wsl.md 다음 링크 참고
 ##### WSL은 윈도우에서 리눅스를 쉽게 실행해서 개발·학습·테스트에 활용할 수 있는 가볍고 강력한 도구
+###### 25.09.03 두번쨰 수업
 ##### WSL을 관리자 권한으로 실행 후
 ```
 ~$ sudo apt-get update
