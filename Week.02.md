@@ -59,6 +59,12 @@ main.exe // 실행
 ## WSL(Windows Subsystem for Linux)
 #### https://github.com/jcshim/deepc/blob/main/01_wsl.md 다음 링크 참고
 ##### WSL은 윈도우에서 리눅스를 쉽게 실행해서 개발·학습·테스트에 활용할 수 있는 가볍고 강력한 도구
+##### WSL을 관리자 권한으로 실행 후
+```
+~$ sudo apt-get update
+```
+##### WSL이 실행되지 않는경우
+###### Window powershell 에서 wsl --install
 
 ## 개발자 명령 프롬포트를 활용한 심화
 ##### 명령줄을 통해 계산하는 코드 선언
