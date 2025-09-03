@@ -2,6 +2,7 @@
 ###### 25.09.03 첫번째 수업
 
 ##### 도구 -> 명령줄 -> 개발자 명령 프롬포트
+##### 덧셈 함수 선언
 ```
 notepad add.c // 텍스트 파일 생성
 ```
@@ -10,6 +11,7 @@ int add(int a,int b){
      return a+b;
 }
 ```
+##### 뺄셈 함수 선언
 ```
 notepad sub.c // 텍스트 파일 생성
 ```
@@ -18,6 +20,7 @@ int sub(int a, int b){
      return (a-b);
 }
 ```
+##### 각각의 함수 코드 컴파일 및 라이브러리 생성
 ```
 cl /c add.c
 cl /c sub.c
@@ -28,6 +31,7 @@ dir my.lib // 라이브러리 디렉터리 확인
 
 notepad main.c
 ```
+##### main코드 선언
 ```c
 #include <stdio.h>
 
@@ -40,6 +44,7 @@ void main(){
      printf("%d\n",sub(2,3));
 }
 ```
+##### 컴파일
 ```
 cl main.c my.lib // 컴파일
 main.exe // 실행
