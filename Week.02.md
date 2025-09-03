@@ -50,10 +50,14 @@ cl main.c my.lib // 컴파일
 main.exe // 실행
 ```
 ##### 퀴즈시험
+##### cl /c add.c sub.c // 컴파일
+##### lib /OUT:my.lib add.obj sub.obj // lib 만들기
+##### cl main.c my.lib // 링크해서 exe 파일 만들기
 
-##### https://github.com/jcshim/deepc/blob/main/01_c_in_linux.md 다음 링크 참고
+#### https://github.com/jcshim/deepc/blob/main/01_c_in_linux.md 다음 링크 참고
 
 ## WSL(Windows Subsystem for Linux)
+#### https://github.com/jcshim/deepc/blob/main/01_wsl.md 다음 링크 참고
 ##### WSL은 윈도우에서 리눅스를 쉽게 실행해서 개발·학습·테스트에 활용할 수 있는 가볍고 강력한 도구
 ##### WSL이 실행이 안될때
 
