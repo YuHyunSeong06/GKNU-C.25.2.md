@@ -45,6 +45,21 @@ int add(int a, int b){
 	return (a+b);
 }
 ```
+#### 응용 세 수를 더하기
+```c
+#include <stdio.h>
 
+int add(int a, int b, int c);
+
+void main(){
+	int a=22, b=33, c=44,r;
+	// r = a + b + c;
+	r = add(a,b,c);
+	printf("%d\n",r);
+}
+int add(int a, int b, int c){
+	return (a+b+c);
+}
+```
 
 
