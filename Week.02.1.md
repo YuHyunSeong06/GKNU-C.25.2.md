@@ -62,5 +62,26 @@ int add(int a, int b, int c){
 }
 ```
 ###### 25.09.08 두번쨰 수업
+##### type ().() 명령프롬포트에서 코드를 확인할 수 있다
+##### cl /c *.c 로 c언어 파일 전체 컴파일
+### link ().obj ().obj ... 파일들을 실행파일로 묶을 수 있다.
+###### my.h
+```c
+#include <stdio.h>
+int a;
+int b;
+int add(int,int);
 ```
+###### main.c
+```c
+#include "my.h"
 
+int main(){
+	a=22;
+	b=33;
+
+	printf("%d\n", a+b);
+}
+```
+###### 응용
+```c
