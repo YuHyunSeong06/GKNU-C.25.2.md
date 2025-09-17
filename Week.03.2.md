@@ -49,8 +49,66 @@ int main() {
 ```
 #### 구조체를 이용한 세 수의합
 ```c
-#includ업
-#### 성적을 입력받아 판정하기
+#include <stdio.h>
+
+typedef struct Math {
+	int a, b, c;
+}M;
+
+int add(M m) {
+	return m.a + m.b + m.c;
+}
+
+void main() {
+	M m = { 1,2,3 };
+	printf("%d\n", add(m));
+	printf("KIM DDILBBANG BABO");
+}
+```
+#### 중간고사 예상 문제
+```c
+#include <stdio.h>
+
+typedef struct Math {
+	int a, b, c;
+}M;
+
+int add(M* m) {
+	return m->a + m->b + m->c; // 함수에서 매개변수로 포인터를 보내면 주소로 받는다
+}
+
+void main() {
+	M me = { 1,2,3 };
+	printf("%d\n", add(&me));
+}
+```
+#### 나이를 입력받아 판정하기
+```c
+#include <stdio.h>
+
+void main() {
+	int age;
+
+	while (1) {
+		printf("Enter your Age (0 to quit) : ");
+		scanf("%d", &age);
+
+		if (age == 0)
+			break;
+
+		else if (age >= 18 && age < 60)
+			printf("Adult\n");
+
+		else if (age >= 60)
+			printf("we can do it\n");
+
+		else if (age <= 18)
+			printf("Youth\n");
+	}
+	
+}
+```
+#### 성적을 입력받아 판정하기-if문
 ```c
 #include <stdio.h>
 
@@ -60,11 +118,50 @@ void main() {
 	for (;;) {
 		puts("Score?");
 		scanf("%d", &s);
-		if (s >= 90) p = 'a';
-		else if (s >= 70) p = 'b';
-		else if (s >= 50) p = 'c';
-		else if (s >= 20) p = 'd';
-		else p = 'f';
+		if (s >= 90) 
+			p = 'a';
+		else if (s >= 70) 
+			p = 'b';
+		else if (s >= 50) 
+			p = 'c';
+		else if (s >= 20) 
+			p = 'd';
+		else 
+			p = 'f';
+
+		printf("%c\n", toupper(p)); // touppper 소문자를 대문자로 tolower 대문자를 소문자로
+	}
+}
+```
+#### 성적을 입력받아 판정하기-case문
+```c
+#include <stdio.h>
+
+void main() {
+	int s;
+
+	char p;
+
+	for (;;) {
+		puts("Score?");
+		scanf("%d", &s);
+
+		switch (s / 10) {
+		case 10:
+		case 9:
+			p = 'a';
+			break;
+		case 8:
+		case 7:
+			p = 'b';
+			break;
+		case 6:
+		case 5:
+		case 4:
+			p = 'c';
+			break;
+		default: p = 'F';
+		}
 		printf("%c\n", toupper(p)); // touppper 소문자를 대문자로 tolower 대문자를 소문자로
 	}
 }
