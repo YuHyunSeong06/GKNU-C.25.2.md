@@ -1,7 +1,7 @@
 ## 프로그래밍 심화
 ###### 25.09.17 첫번째 수업
 
-##### 함수의 프로토타입을 통해 선언하고 두 수를 더하기
+#### 함수의 프로토타입을 통해 선언하고 두 수를 더하기
 ```c
 #include <stdio.h>
 
@@ -19,7 +19,7 @@ int add(int a, int b) {
 	return t;
 }
 ```
-##### 1부터 100까지 짝수의 합
+#### 1부터 100까지 짝수의 합
 ```c
 #include <stdio.h>
 
@@ -35,7 +35,7 @@ int main() {
 }
 ```
 
-##### 1부터 100까지 홀수의 합
+#### 1부터 100까지 홀수의 합
 ```c
 #include <stdio.h>
 
@@ -47,7 +47,7 @@ int main() {
 	printf("%d\n", sum);
 }
 ```
-##### 구조체를 이용한 세 수의합
+#### 구조체를 이용한 세 수의합
 ```c
 #include <stdio.h>
 
@@ -64,7 +64,7 @@ void main() {
 	printf("%d\n", add(m));
 }
 ```
-##### 중간고사 예상문제
+#### 중간고사 예상문제
 ```c
 #include <stdio.h>
 
@@ -79,5 +79,29 @@ int add(M* m) {
 void main() {
 	M me = { 1,2,3 };
 	printf("%d\n", add(&me));
+}
+```
+#### 나이를 입력받아 판정하기
+```c
+#include <stdio.h>
+
+void main() {
+	int age;
+
+	while (1) {
+		printf("Enter your Age (0 to quit) : ");
+		scanf("%d", &age);
+
+		if (age == 0)
+			break;
+
+		else if (age >= 18 && age<60)
+			printf("Adult\n");
+
+		else if (age >= 60)
+			printf("Old Age\n");
+
+		else printf("Youth\n");
+	}
 }
 ```
