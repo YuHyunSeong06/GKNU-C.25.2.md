@@ -46,3 +46,20 @@ int main() {
 	printf("%d\n", sum);
 }
 ```
+##### 구조체를 이용한 세 수의합
+```c
+#include <stdio.h>
+
+typedef struct Math {
+	int a, b, c;
+}M;
+
+int add(M m) {
+	return m.a + m.b + m.c;
+}
+
+void main() {
+	M m = { 1,2,3 };
+	printf("%d\n", add(m));
+}
+```
