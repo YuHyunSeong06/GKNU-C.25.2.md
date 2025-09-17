@@ -105,3 +105,22 @@ void main() {
 	}
 }
 ```
+#### 성적을 입력받아 판정하기
+```c
+#include <stdio.h>
+
+void main() {
+	int s;
+	char p;
+	for (;;) {
+		puts("Score?");
+		scanf("%d", &s);
+		if (s >= 90) p = 'a';
+		else if (s >= 70) p = 'b';
+		else if (s >= 50) p = 'c';
+		else if (s >= 20) p = 'd';
+		else p = 'f';
+		printf("%c\n", toupper(p)); // touppper 소문자를 대문자로 tolower 대문자를 소문자로
+	}
+}
+```
