@@ -49,62 +49,7 @@ int main() {
 ```
 #### 구조체를 이용한 세 수의합
 ```c
-#include <stdio.h>
-
-typedef struct Math {
-	int a, b, c;
-}M;
-
-int add(M m) {
-	return m.a + m.b + m.c;
-}
-
-void main() {
-	M m = { 1,2,3 };
-	printf("%d\n", add(m));
-}
-```
-#### 중간고사 예상문제
-```c
-#include <stdio.h>
-
-typedef struct Math {
-	int a, b, c;
-}M;
-
-int add(M* m) {
-	return m->a + m->b + m->c; // 함수에서 매개변수로 포인터를 보내면 주소로 받는다
-}
-
-void main() {
-	M me = { 1,2,3 };
-	printf("%d\n", add(&me));
-}
-```
-#### 나이를 입력받아 판정하기
-```c
-#include <stdio.h>
-
-void main() {
-	int age;
-
-	while (1) {
-		printf("Enter your Age (0 to quit) : ");
-		scanf("%d", &age);
-
-		if (age == 0)
-			break;
-
-		else if (age >= 18 && age<60)
-			printf("Adult\n");
-
-		else if (age >= 60)
-			printf("Old Age\n");
-
-		else printf("Youth\n");
-	}
-}
-```
+#includ업
 #### 성적을 입력받아 판정하기
 ```c
 #include <stdio.h>
