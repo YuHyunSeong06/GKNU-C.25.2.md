@@ -64,3 +64,20 @@ void main() {
 	printf("%d\n", add(m));
 }
 ```
+##### 중간고사 예상문제
+```c
+#include <stdio.h>
+
+typedef struct Math {
+	int a, b, c;
+}M;
+
+int add(M* m) {
+	return m->a + m->b + m->c; // 함수에서 매개변수로 포인터를 보내면 주소로 받는다
+}
+
+void main() {
+	M me = { 1,2,3 };
+	printf("%d\n", add(&me));
+}
+```
