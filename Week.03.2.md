@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 int add(int, int);
+
 void main() {
 	int a, b;
 	a = 11, b = 22;
