@@ -108,6 +108,7 @@ void main() {
 	
 }
 ```
+###### 25.09.17 두번째수업
 #### 성적을 입력받아 판정하기-if문
 ```c
 #include <stdio.h>
@@ -164,5 +165,16 @@ void main() {
 		}
 		printf("%c\n", toupper(p)); // touppper 소문자를 대문자로 tolower 대문자를 소문자로
 	}
+}
+```
+#### 재귀함수의 기초형
+```c
+#include <stdio.h>
+
+int add(int a) {
+	if (a > 1) return a + add(a - 1);
+}
+void main() {
+	printf("%d\n", add(3));
 }
 ```
