@@ -178,3 +178,14 @@ void main() {
 	printf("%d\n", add(3));
 }
 ```
+#### 팩토리얼 구해보기
+```c
+#include <stdio.h>
+
+int f(int a) {
+	if (a > 1) return a * f(a - 1);
+}
+void main() {
+	printf("%d\n", f(4));
+}
+```
