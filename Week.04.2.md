@@ -96,6 +96,41 @@ void main() {
 }
 ```
 ## 그래픽스와 이차원 배열의 응용
-##### 25.09.24 두번째 수업업
+###### 25.09.24 두번째 수업
+##### 동적메모리 malloc 활용
+```c
+#include <stdio.h>
+#include <stdlib.h>
 
+void main() {
+	int* p;
+	p = (int*)malloc(sizeof(int) * 2); // 동적메모리, 힙영역
+	// sizeof byte 수를 나타내주는 연산자
+	if (!p) {
+		perror("malloc");
+		return 1;
+	}
+
+	*(p+0) = 11;
+	*(p+1) = 22;
+
+	printf("%d %d\n", p[0], p[1]);
+	free(p);
+}
+```
+##### 그래픽스를 통한 초록색 원 그리기
+```c
+#include "raylib.h"
+
+int main(void) {
+	InitWindow(800, 600, "GKNU");
+	while (!WindowShouldClose()) {
+		BeginDrawing();
+		ClearBackground(BLACK);
+		DrawCircle(400, 300, 150, GREEN);
+		EndDrawing();
+	}
+	CloseWindow();
+}
+```
 
