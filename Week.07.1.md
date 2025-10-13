@@ -1,7 +1,7 @@
 ## WSL 환경에서 C언어를 컴파일하기
 
 ##### WSL 환경에서 첫번째로 해야할것
-```Linux
+```wsl
 ubuntu
 ~$ sudo apt-get update
 ~$ sudo apt-get update -y
@@ -18,3 +18,10 @@ ls
 gcc -o main main.c
 ./ main
 ```
+```
+nano add.c
+gcc -c *.c
+gcc -o main main.o add.o
+./main
+```
+
