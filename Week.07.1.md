@@ -54,3 +54,39 @@ cl/c *.c
 lib /OUT:my.lib add.obj
 link main my.lib
 ```
+## 주사위를 굴려 각 눈의 경우의 수
+```c
+// 프로토타입
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void main() {
+	int h[6] = { 0 };
+	srand(time(NULL));
+	for (int i = 0; i < 60;i++) {
+		int n = rand();
+		n = n % 6;
+		h[n] = h[n] + 1;
+	}
+	for (int j = 0;j < 6;j++) {
+		printf("[%d]=%d\n", j+1,h[j]);
+	}
+}
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int h[6]; // 글로벌 초기화
+void main() {
+	srand(time(NULL));
+	for (int i = 0; i < 60;i++) {
+		h[rand() % 6]++;
+	}
+	for (int j = 0;j < 6;j++) {
+		printf("[%d]=%d\n", j + 1, h[j]);
+	}
+}
+```
