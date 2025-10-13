@@ -33,4 +33,19 @@ gcc -o main main.o add.o
 ./main
 ```
 ```
+nano makefile
+```
+```
+  GNU nano 7.2                                            makefile *                                                    CC = gcc
+all: test
+
+test: main.o add.o
+        $(CC) -o test main.o add.o
+main.o: main.c
+        $(CC) -c main.c
+add.o: add.c
+        $(CC) -c add.c
+clean:
+        rm -rf *.o
+```
 
