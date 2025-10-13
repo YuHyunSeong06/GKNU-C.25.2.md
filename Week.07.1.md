@@ -18,10 +18,19 @@ ls
 gcc -o main main.c
 ./ main
 ```
+```c
+#include <stdio.h>
+int add(int, int)
+void main(){
+  int a=22, b=33;
+  printf("%d\n",add(a,b));
+}
+```
 ```
 nano add.c
 gcc -c *.c
 gcc -o main main.o add.o
 ./main
+```
 ```
 
