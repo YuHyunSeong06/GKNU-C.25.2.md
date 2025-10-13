@@ -90,3 +90,16 @@ void main() {
 	}
 }
 ```
+##### 함수의 포인터터
+```c
+#include <stdio.h>
+
+int add(int a, int b) {
+	return a + b;
+}
+
+int main(void) {
+	int(*fn)(int, int) = add;
+	printf("%d\n", fn(3, 5)); // 함수의 포인터
+}
+```
