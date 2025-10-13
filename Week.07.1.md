@@ -48,3 +48,9 @@ add.o: add.c
 clean:
         rm -rf *.o
 ```
+##### 명령줄 프롬포트를 통한 코딩
+```
+cl/c *.c
+lib /OUT:my.lib add.obj
+link main my.lib
+```
