@@ -48,4 +48,3 @@ add.o: add.c
 clean:
         rm -rf *.o
 ```
-
