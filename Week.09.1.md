@@ -19,7 +19,7 @@ struct USER{
   char name[20];
 };
 ```
-### union
+### 공용체(union) : 자료형이 달라도 값이 메모리를 공유한다.
 ```c
 union DATA{
   char a;
