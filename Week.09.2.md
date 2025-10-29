@@ -61,9 +61,18 @@ int main(void) {
     enum TL light = RED;
 
     switch (light) {
-        case RED:    printf("멈춤!\n"); break;
-        case YELLOW: printf("주의!\n"); break;
-        case GREEN:  printf("출발!\n"); break;
+        case RED:
+		    printf("멈춤!\n");
+			break;
+        case YELLOW:
+			printf("주의!\n");
+			break;
+        case GREEN:
+  			printf("출발!\n");
+			break;
+		default:
+			printf("오류\n");
+			break;
     }
     return 0;
 }
@@ -85,11 +94,14 @@ int main(void) {
     printf("%d\n", GREEN);
     switch (light) {
     case RED:
-        printf("멈춤!\n"); break;
+        printf("멈춤!\n");
+		break;
     case YELLOW:
-        printf("주의!\n"); break;
+        printf("주의!\n");
+		break;
     case GREEN:
-        printf("출발!\n"); break;
+        printf("출발!\n");
+		break;
     default:
         printf("오류\n");
     }
