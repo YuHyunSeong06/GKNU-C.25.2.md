@@ -44,3 +44,6 @@ void main(int argc, char* argv[]){
 	printf("%d\n",div(a,b));
 }
 ```
+##### cl /c *.c (모든 C파일 컴파일)
+##### lib /OUT:math.lib add.obj sub.obj mul.obj div.obj (각각의 파일들을 math의 라이브러리에 포함)
+##### cl 
