@@ -108,3 +108,25 @@ int main(void) {
     return 0;
 }
 ```
+## union
+```c
+#include <stdio.h>
+
+union Number {
+    int   i;
+    float f;
+};
+
+int main(void) {
+    union Number n;
+
+    n.i = 42;                        // 같은 메모리를 int로 사용
+    printf("int로 저장: i=%d, f=%f\n", n.i, n.f);
+
+    n.f = 3.14f;                     // 같은 메모리를 float로 다시 사용(덮어씀)
+    printf("float로 저장: f=%f, i=%d\n", n.f, n.i);
+
+    printf("union 크기: %zu 바이트\n", sizeof(union Number));
+    return 0;
+}
+```
