@@ -1,21 +1,25 @@
 ## 명령프롬포트를 활용하여 코딩
 ##### cd \(경로 이동) -> mkdir anu -> cd anu -> notepad add.c
 ```c
+// add.c로 모든 파일로 저장
 int add(int a, int b){
   return a + b;
 }
 ```
 ```c
+// sub.c로 모든 파일로 저장
 int sub(int a, int b){
   return a - b;
 }
 ```
 ```c
+// mul.c로 모든 파일로 저장
 int mul(int a, int b){
   return a * b;
 }
 ```
 ```c
+// idv.c 모든 파일로 저장
 int div(int a, int b){
   return a / b;
 }
