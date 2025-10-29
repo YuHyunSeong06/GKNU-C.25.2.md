@@ -130,3 +130,89 @@ int main(void) {
     return 0;
 }
 ```
+## 구조체의 이해
+
+##### 미션1: 2명 학생 학번, 이름 및 3과목(Kor, Math, Eng) 성적을 구조체로 초기화 하고, my.txt에 저장하시오.
+```c
+#include <stdio.h>
+
+typedef struct {
+    int id;           // 학번
+    char name[32];    // 이름
+    int kor, math, eng; // 국어, 수학, 영어
+} Student;
+
+int main(void) {
+    Student s[2] = {
+        {20251234, "Kim", 95, 88, 91},
+        {20251235, "Lee", 82, 90, 86}
+    };
+
+    FILE *fp = fopen("my.txt", "w");
+    if (!fp) {
+        perror("my.txt open failed");
+        return 1;
+    }
+
+    // CSV 형식: ID,Name,Kor,Math,Eng
+    fprintf(fp, "ID,Name,Kor,Math,Eng\n");
+    for (int i = 0; i < 2; ++i) {
+        fprintf(fp, "%d,%s,%d,%d,%d\n",
+                s[i].id, s[i].name, s[i].kor, s[i].math, s[i].eng);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+```
+ID,Name,Kor,Math,Eng
+20251234,Kim,95,88,91
+20251235,Lee,82,90,86
+```
+##### 미션2: my.txt 데이터를 읽고 개인별 평균을 화면에 출력하시오.
+```C
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp = fopen("my.txt", "r");
+    if (!fp) {
+        perror("my.txt open failed");
+        return 1;
+    }
+
+    char line[256];
+    // 헤더 한 줄 건너뛰기
+    if (!fgets(line, sizeof(line), fp)) {
+        fprintf(stderr, "파일이 비어 있습니다.\n");
+        fclose(fp);
+        return 1;
+    }
+
+    // 데이터 읽기
+    while (fgets(line, sizeof(line), fp)) {
+        int id, kor, math, eng;
+        char name[64];
+
+        // CSV 파싱: ID,Name,Kor,Math,Eng
+        if (sscanf(line, "%d,%63[^,],%d,%d,%d", &id, name, &kor, &math, &eng) == 5) {
+            double avg = (kor + math + eng) / 3.0;
+            printf("ID:%d  이름:%s  평균: %.2f\n", id, name, avg);
+        }
+        // 형식이 맞지 않는 줄은 자동 건너뜀
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+```
+ID:20251234  이름:Kim  평균: 91.33
+ID:20251235  이름:Lee  평균: 86.00
+```
+##### my.txt로 부터 읽고, 다음과 같은 형식의 오른쪽 끝에는 개인 평균, 아래쪽에는 과목 평균을 나타내시오. 
+```
+ID,Name,Kor,Math,Eng
+20251234,Kim,95,88,91
+20251235,Lee,82,90,86
+```
