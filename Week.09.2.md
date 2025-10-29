@@ -47,3 +47,52 @@ void main(int argc, char* argv[]){
 ##### cl /c *.c (모든 C파일 컴파일)
 ##### lib /OUT:math.lib add.obj sub.obj mul.obj div.obj (각각의 파일들을 math의 라이브러리에 포함)
 ##### cl 
+
+## enum
+##### 신호기를 enum을 사용해서 숫자를 문자로 출력
+```c
+#include <stdio.h>
+
+// typedef 없이 enum 정의
+enum TL { RED, YELLOW, GREEN };
+
+int main(void) {
+    // enum 키워드로 변수 선언
+    enum TL light = RED;
+
+    switch (light) {
+        case RED:    printf("멈춤!\n"); break;
+        case YELLOW: printf("주의!\n"); break;
+        case GREEN:  printf("출발!\n"); break;
+    }
+    return 0;
+}
+```
+##### 응용
+```c
+#include <stdio.h>
+
+// typedef 없이 enum 정의
+typedef enum { 
+    RED, 
+    YELLOW, 
+    GREEN 
+}TL;
+
+int main(void) {
+    // enum 키워드로 변수 선언
+    TL light = GREEN;
+    printf("%d\n", GREEN);
+    switch (light) {
+    case RED:
+        printf("멈춤!\n"); break;
+    case YELLOW:
+        printf("주의!\n"); break;
+    case GREEN:
+        printf("출발!\n"); break;
+    default:
+        printf("오류\n");
+    }
+    return 0;
+}
+```
