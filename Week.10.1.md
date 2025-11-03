@@ -1,5 +1,5 @@
-## WSL 환경
-### WSL 환경에서 두 수를 더하기
+# WSL 환경
+## WSL 환경에서 두 수를 더하기
 ###### wsl -> nano test7.c
 ```c
 #include <stdio.h> // printf();
@@ -18,7 +18,7 @@ void main(int argc, char* argv[]){
 ##### gcc -o run test7.c -> ./run 11 33 -> 44출력
 ##### 두 가지 방식으로 사용이 가능하다
 
-### swap 함수로 두 수를 교환하기
+## swap 함수로 두 수를 교환하기
 ##### nano test.c
 ```c
 #include <stdio.h> // printf();
