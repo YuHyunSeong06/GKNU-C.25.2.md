@@ -66,3 +66,32 @@ print sum
 ###### 3. 한 바퀴(패스)가 끝나면 **가장 큰 값이 맨 끝**에 자리
 ###### 4. 끝에 확정된 부분을 제외하고 **남은 구간에 대해 반복**
 ###### 5. 어떤 패스에서 **교환이 한 번도 없으면** 이미 정렬된 것이므로 **조기 종료**
+```c
+#include <stdio.h>
+
+// 버블 정렬 함수 정의
+void bubble_sort(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - 1 - i; j++)
+            if (a[j] > a[j + 1]) {
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+}
+
+int main(void) {
+    int a[] = {5, 1, 4, 2, 8};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    bubble_sort(a, n);
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    printf("\n");
+
+    return 0;
+}
+```
+
+## 퀵 쇼트트
