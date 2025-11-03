@@ -141,12 +141,31 @@ int main(void) {
 ##### 진행과정을 상세히 보여주는 퀵소트 예시 코드
 ```c
 #include <stdio.h>
+#include <windows.h>
 
-// 배열 상태를 출력하는 함수
-void printArray(int arr[], int n) {
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
+// 콘솔 색상 변경 함수
+void setColor(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+// 배열 상태를 색상과 함께 출력
+void printArrayColor(int arr[], int n, int pivotIndex, int j1, int j2) {
+    for (int i = 0; i < n; i++) {
+        if (i == pivotIndex) {
+            setColor(12); // 빨강 (피벗)
+            printf("%d ", arr[i]);
+        }
+        else if (i == j1 || i == j2) {
+            setColor(10); // 초록 (교환 대상)
+            printf("%d ", arr[i]);
+        }
+        else {
+            setColor(7); // 기본 (흰색)
+            printf("%d ", arr[i]);
+        }
+    }
+    setColor(7);
+    printf("\n\n");
 }
 
 // 두 값을 교환하는 함수
@@ -156,49 +175,65 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
-// 분할(Partition) 함수
+// Partition 과정 (피벗 기준으로 분할)
 int partition(int arr[], int low, int high, int n) {
-    int pivot = arr[high];  // 마지막 원소를 피벗으로 선택
-    int i = low - 1;        // i는 작은 원소들의 마지막 인덱스
+    int pivot = arr[high];  // 피벗 선택
+    int i = low - 1;
 
-    printf("\n[Partition 시작] low=%d, high=%d, pivot=%d\n", low, high, pivot);
+    printf("\n\n\n"); // 새로운 partition 시작 시 세 줄 띄움
+    setColor(11);
+    printf("[Partition 시작] low=%d, high=%d, pivot=%d\n\n", low, high, pivot);
+    setColor(7);
+
     printf("초기 배열 상태: ");
-    printArray(arr, n);
+    printArrayColor(arr, n, high, -1, -1);
+    Sleep(1000);
 
     for (int j = low; j < high; j++) {
-        // 현재 요소가 pivot보다 작으면 왼쪽 영역으로 이동
+        setColor(14);
+        printf("비교 중 → arr[%d]=%d vs pivot=%d\n\n", j, arr[j], pivot);
+        setColor(7);
+        printArrayColor(arr, n, high, j, -1);
+        Sleep(600);
+
         if (arr[j] < pivot) {
             i++;
             swap(&arr[i], &arr[j]);
-            printf("  → arr[%d](%d)와 arr[%d](%d) 교환: ", i, arr[i], j, arr[j]);
-            printArray(arr, n);
+            setColor(10);
+            printf("  교환 발생 → arr[%d] <-> arr[%d]\n\n", i, j);
+            setColor(7);
+            printArrayColor(arr, n, high, i, j);
+            Sleep(800);
         }
     }
 
-    // pivot을 올바른 위치로 이동
     swap(&arr[i + 1], &arr[high]);
-    printf("  → pivot(%d)을 arr[%d] 위치로 이동: ", pivot, i + 1);
-    printArray(arr, n);
+    setColor(12);
+    printf("피벗 이동 → arr[%d] <-> arr[%d]\n\n", i + 1, high);
+    setColor(7);
+    printArrayColor(arr, n, i + 1, i + 1, high);
+    Sleep(1000);
 
-    printf("[Partition 종료] pivot 최종 위치: %d\n", i + 1);
-    printf("-----------------------------------------\n");
+    setColor(11);
+    printf("[Partition 종료] pivot 최종 위치: %d\n\n", i + 1);
+    setColor(7);
+    printf("----------------------------------------------------------\n\n");
+    Sleep(1000);
 
-    return (i + 1); // 피벗의 최종 위치 반환
+    return i + 1;
 }
 
-// 퀵 정렬(Quick Sort) 함수
+// 퀵 정렬 함수 (재귀적 분할)
 void quick_sort(int arr[], int low, int high, int n, int depth) {
     if (low < high) {
-        // 깊이에 따라 들여쓰기 출력 (시각적 구분용)
         for (int k = 0; k < depth; k++) printf("  ");
-        printf("퀵 정렬 호출: low=%d, high=%d\n", low, high);
+        setColor(9);
+        printf("▶ 퀵 정렬 호출 (low=%d, high=%d)\n\n", low, high);
+        setColor(7);
 
-        int pi = partition(arr, low, high, n); // 피벗 정렬
+        int pi = partition(arr, low, high, n);
 
-        // 왼쪽 부분 배열 정렬
         quick_sort(arr, low, pi - 1, n, depth + 1);
-
-        // 오른쪽 부분 배열 정렬
         quick_sort(arr, pi + 1, high, n, depth + 1);
     }
 }
@@ -207,14 +242,23 @@ int main() {
     int arr[] = { 5, 3, 8, 4, 2, 7, 1, 10 };
     int n = sizeof(arr) / sizeof(arr[0]);
 
+    setColor(11);
+    printf("\n=== 퀵 정렬 시작 (가시성 향상 + 색상 시각화 버전) ===\n\n");
+    setColor(7);
+
     printf("초기 배열: ");
-    printArray(arr, n);
-    printf("=========================================\n");
+    printArrayColor(arr, n, -1, -1, -1);
+    printf("==========================================================\n\n");
 
     quick_sort(arr, 0, n - 1, n, 0);
 
-    printf("\n정렬 완료!\n최종 결과: ");
-    printArray(arr, n);
+    setColor(11);
+    printf("\n=== 정렬 완료 ===\n\n최종 결과: ");
+    setColor(7);
+    printArrayColor(arr, n, -1, -1, -1);
+
+    setColor(7); // 색상 복원
     return 0;
 }
+
 ```
