@@ -27,7 +27,7 @@ void main(int argc, char* argv[]){
 void swap(int* a, int* b){
         int p = *a;
         *a = *b;
-        *b = t;
+        *b = p;
 }
 
 int main(void){
