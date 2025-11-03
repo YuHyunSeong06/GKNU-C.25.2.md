@@ -1,1 +1,19 @@
+## WSL 환경
+### WSL 환경에서 두 수를 더하기
+###### wsl -> nano test7.c
+```c
+#include <stdio.h> // printf();
+#include <stdlib.h> // atoi(test 11 33) 11->11 atoi("11"); 11
 
+void main(int argc, char* argv[]){
+        int a,b,s;
+        a = atoi(argv[1]);
+        b = atoi(argv[2]);
+        s = a + b;
+        printf("%d\n",s);
+}
+```
+##### more test7.c를 통해 코드 상태를 확인
+##### gcc test7.c -> ./a.out 11 33 -> 44출력
+##### gcc -o run test7.c -> ./run 11 33 -> 44출력
+##### 두 가지 방식으로 사용이 가능하다
