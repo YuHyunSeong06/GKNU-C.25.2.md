@@ -17,3 +17,23 @@ void main(int argc, char* argv[]){
 ##### gcc test7.c -> ./a.out 11 33 -> 44출력
 ##### gcc -o run test7.c -> ./run 11 33 -> 44출력
 ##### 두 가지 방식으로 사용이 가능하다
+
+### swap 함수로 두 수를 교환하기
+##### nano test.c
+```c
+#include <stdio.h> // printf();
+#include <stdlib.h> // atoi(test 11 33) 11->11 atoi("11"); 11
+
+void swap(int* a, int* b){
+        int p = *a;
+        *a = *b;
+        *b = t;
+}
+
+int main(void){
+        int v[2]={11,33};
+        swap(&v[0],&v[1]);
+        printf("%d %d\n",v[0],v[1]);
+}
+```
+##### gcc -o run test7.c ./run test7.c -> 33 11 출력
