@@ -94,4 +94,127 @@ int main(void) {
 }
 ```
 
-## 퀵 쇼트트
+## 퀵 쇼트
+##### 1. 배열에서 기준점(pivot)을 하나 선택
+##### 2. 기준보다 작은 값은 왼쪽, 큰 값들을 오른쪽으로 분할
+##### 3. 양쪽 부분 배열에 대해 같은 작업(재귀)를 반복
+
+##### 교수님의 코드
+```c
+#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int t = *a; *a = *b; *b = t;
+}
+
+int partition(int arr[], int left, int right) {
+    int pivot = arr[right];      // 피벗: 맨 오른쪽 원소
+    int i = left - 1;
+    for (int j = left; j < right; j++) {
+        if (arr[j] <= pivot) {
+            swap(&arr[++i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[right]);
+    return i + 1;
+}
+
+void quicksort(int arr[], int left, int right) {
+    if (left >= right) return;
+    int p = partition(arr, left, right);
+    quicksort(arr, left, p - 1);
+    quicksort(arr, p + 1, right);
+}
+
+int main(void) {
+    int arr[] = {5, 3, 8, 4, 2, 7, 1, 10, 6, 9};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    quicksort(arr, 0, n - 1);
+
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}
+```
+
+##### 진행과정을 상세히 보여주는 퀵소트 예시 코드
+```c
+#include <stdio.h>
+
+// 배열 상태를 출력하는 함수
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+// 두 값을 교환하는 함수
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// 분할(Partition) 함수
+int partition(int arr[], int low, int high, int n) {
+    int pivot = arr[high];  // 마지막 원소를 피벗으로 선택
+    int i = low - 1;        // i는 작은 원소들의 마지막 인덱스
+
+    printf("\n[Partition 시작] low=%d, high=%d, pivot=%d\n", low, high, pivot);
+    printf("초기 배열 상태: ");
+    printArray(arr, n);
+
+    for (int j = low; j < high; j++) {
+        // 현재 요소가 pivot보다 작으면 왼쪽 영역으로 이동
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+            printf("  → arr[%d](%d)와 arr[%d](%d) 교환: ", i, arr[i], j, arr[j]);
+            printArray(arr, n);
+        }
+    }
+
+    // pivot을 올바른 위치로 이동
+    swap(&arr[i + 1], &arr[high]);
+    printf("  → pivot(%d)을 arr[%d] 위치로 이동: ", pivot, i + 1);
+    printArray(arr, n);
+
+    printf("[Partition 종료] pivot 최종 위치: %d\n", i + 1);
+    printf("-----------------------------------------\n");
+
+    return (i + 1); // 피벗의 최종 위치 반환
+}
+
+// 퀵 정렬(Quick Sort) 함수
+void quick_sort(int arr[], int low, int high, int n, int depth) {
+    if (low < high) {
+        // 깊이에 따라 들여쓰기 출력 (시각적 구분용)
+        for (int k = 0; k < depth; k++) printf("  ");
+        printf("퀵 정렬 호출: low=%d, high=%d\n", low, high);
+
+        int pi = partition(arr, low, high, n); // 피벗 정렬
+
+        // 왼쪽 부분 배열 정렬
+        quick_sort(arr, low, pi - 1, n, depth + 1);
+
+        // 오른쪽 부분 배열 정렬
+        quick_sort(arr, pi + 1, high, n, depth + 1);
+    }
+}
+
+int main() {
+    int arr[] = { 5, 3, 8, 4, 2, 7, 1, 10 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("초기 배열: ");
+    printArray(arr, n);
+    printf("=========================================\n");
+
+    quick_sort(arr, 0, n - 1, n, 0);
+
+    printf("\n정렬 완료!\n최종 결과: ");
+    printArray(arr, n);
+    return 0;
+}
+```
