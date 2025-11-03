@@ -13,6 +13,7 @@ void main(int argc, char* argv[]){
         printf("%d\n",s);
 }
 ```
+##### ^x y enter를 통해 코드를 저장
 ##### more test7.c를 통해 코드 상태를 확인
 ##### gcc test7.c -> ./a.out 11 33 -> 44출력
 ##### gcc -o run test7.c -> ./run 11 33 -> 44출력
@@ -36,4 +37,4 @@ int main(void){
         printf("%d %d\n",v[0],v[1]);
 }
 ```
-##### gcc -o run test7.c ./run test7.c -> 33 11 출력
+##### gcc -o run test7.c -> ./run test7.c -> 33 11 출력
