@@ -24,7 +24,7 @@ void main(int argc, char* argv[]){
 #include <stdio.h> // printf();
 #include <stdlib.h> // atoi(test 11 33) 11->11 atoi("11"); 11
 
-void swap(int* a, int* b){
+void swap(int* a, int* b){ // 받을때는 포인터로 받기
         int p = *a;
         *a = *b;
         *b = p;
@@ -32,7 +32,7 @@ void swap(int* a, int* b){
 
 int main(void){
         int v[2]={11,33};
-        swap(&v[0],&v[1]);
+        swap(&v[0],&v[1]); // 보낼때는 주소로 보내기
         printf("%d %d\n",v[0],v[1]);
 }
 ```
