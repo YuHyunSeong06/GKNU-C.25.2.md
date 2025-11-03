@@ -38,3 +38,6 @@ int main(void){
 }
 ```
 ##### gcc -o run test7.c -> ./run test7.c -> 33 11 출력
+# 알고리즘 
+##### 수학적 알고리즘, 누적합, 정렬, 탑색, 재귀 등 
+##### https://cafe.naver.com/jclang?iframe_url_utf8=%2FArticleRead.nhn%253Fclubid%3D30916880%2526articleid%3D366%2526referrerAllArticles%3Dtrue
