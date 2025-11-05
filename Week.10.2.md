@@ -86,3 +86,18 @@ int main() {
     return 0;
 }
 ```
+###### 중간값
+```c
+#include <stdio.h>
+
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MED3(a,b,c) ((a) + (b) + (c) - MIN(MIN(a,b), (c)) - MAX(MAX(a,b), (c)))
+
+int main(void) {
+    int x = 5, y = 1, z = 3;
+    printf("중간값: %d\n", MED3(x, y, z)); // 출력: 3
+    return 0;
+}
+```
+##### 자료구조와 알고리즘의 종류 익히기
