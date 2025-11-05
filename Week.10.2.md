@@ -69,3 +69,20 @@ int main(void) {
 }
 ```
 ##### 피보나치 수열
+```c
+#include <stdio.h>
+
+int dp[50]; // 계산 결과를 저장할 배열
+
+int fibonacci(int n) {
+    if (n == 1) return 1;
+    if (n == 2) return 1;
+    if (dp[n] != 0) return dp[n]; // 이미 계산된 값이면 바로 반환
+    return dp[n] = fibonacci(n - 1) + fibonacci(n - 2); // 계산하고 저장
+}
+
+int main() {
+    printf("%d\n", fibonacci(5)); // 5번째 피보나치 수 출력
+    return 0;
+}
+```
