@@ -49,3 +49,23 @@ int main(void) {
     return 0;
 }
 ```
+###### 최솟값 
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a[] = { 3, 1, 2, 5, 4 };
+    int n = sizeof(a) / sizeof(a[0]);  // 원소 개수
+    int mn = a[0];                    // 첫 원소로 초기화
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] < mn) {
+            mn = a[i];
+        }
+    }
+
+    printf("Min: %d\n", mn);
+    return 0;
+}
+```
+##### 피보나치 수열
