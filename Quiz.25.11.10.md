@@ -76,26 +76,29 @@ int main(void) {
 ```c
 #include <stdio.h>
 
-void bubbleSort(int arr[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+void bubble(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - 1 - i; j++)
+            if (a[j] > a[j + 1]) {
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
             }
-        }
-    }
 }
 
 int main(void) {
-    int arr[5] = {5, 2, 4, 1, 3};
-    bubbleSort(arr, 5);
+    int a[] = {5, 1, 4, 2, 8};
+    int n = sizeof(a) / sizeof(a[0]);
 
-    for (int i = 0; i < 5; i++)
-        printf("%d ", arr[i]);
+    bubble(a, n); 
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    printf("\n");
 
     return 0;
+}
+0;
 }
 ```
 
