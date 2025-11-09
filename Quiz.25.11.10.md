@@ -23,7 +23,7 @@ END
 ---
 
 ### **2️⃣ 1부터 10까지 숫자를 더하는 프로그램의 “플로우차트”**
-
+<img width="420" height="348" alt="image" src="https://github.com/user-attachments/assets/8224a126-e8cb-4659-89a9-f6b30644bf4e" />
 **✅ 텍스트형 플로우차트**
 
 ```
