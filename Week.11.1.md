@@ -1,3 +1,4 @@
+정렬: 리스트, 큐, 구조체, 트리, 스택
 ### WSLㅎ### WSLㅎ
 ```
 main: main.o add.o sub.o
