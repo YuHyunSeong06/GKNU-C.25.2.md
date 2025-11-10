@@ -10,7 +10,4 @@ sub.o: sub.c
         gcc -c sub.c
 run:
         ./main
-clean:
-        rm -rf *.o
-        rm ./main
 ```
