@@ -196,35 +196,6 @@ int main(void) {
     return 0;
 }
 ```
-
----
-
-## **11. 피보나치 수열 (메모이제이션, 핵심 주석만)**
-
-```c
-#include <stdio.h>
-
-int dp[50];
-
-int fibonacci(int n) {
-    if (n == 1 || n == 2) return 1;   // 기본값
-
-    if (dp[n] != 0)                   // 이미 계산한 값이면 재사용
-        return dp[n];
-
-    return dp[n] = fibonacci(n-1) + fibonacci(n-2);  // 값 저장
-}
-
-int main(void) {
-    printf("%d\n", fibonacci(5));
-    return 0;
-}
-```
-
----
-
-# 📌 추가 설명 — **enum과 union 개념**
-
 ## ✅ **enum (열거형)**
 
 * "정수 상수에 이름을 붙여주는" 자료형
@@ -289,3 +260,65 @@ struct {
 
 ---
 
+---
+
+## **11. 피보나치 수열 (메모이제이션, 핵심 주석만)**
+
+```c
+#include <stdio.h>
+
+int dp[50];
+
+int fibonacci(int n) {
+    if (n == 1 || n == 2) return 1;   // 기본값
+
+    if (dp[n] != 0)                   // 이미 계산한 값이면 재사용
+        return dp[n];
+
+    return dp[n] = fibonacci(n-1) + fibonacci(n-2);  // 값 저장
+}
+
+int main(void) {
+    printf("%d\n", fibonacci(5));
+    return 0;
+}
+```
+
+---
+
+## **12. MAX 값 칮기**
+
+```c
+#include <stdio.h>
+
+#define MAX(a,b) ((a)>(b) ? (a) : (b))
+
+int main(void) {
+	int a[] = { 2,5,4,6,1 };
+	int n = sizeof(a) / sizeof(a[0]);
+	int max = a[0];
+
+	for (int i = 1; i < n; i++) {
+		max = MAX(max, a[i]);
+	}
+	printf("%d\n", max);
+}
+```
+---
+
+---
+
+## **13. 중간값 찾기**
+```c
+#include <stdio.h>
+
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MED3(a,b,c) ((a) + (b) + (c) - MIN(MIN(a,b), (c)) - MAX(MAX(a,b), (c)))
+
+int main(void) {
+    int x = 5, y = 1, z = 3;
+    printf("중간값: %d\n", MED3(x, y, z)); // 출력: 3
+    return 0;
+}
+```
