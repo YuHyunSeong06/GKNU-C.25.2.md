@@ -43,4 +43,24 @@ int main(void) {
 	}
 }
 ```
+## raylib 활용
+### 이미지 출력
+```c
+#include "raylib.h"
+int main(void) {
+	InitWindow(800, 600, "raylib");
+
+	Texture2D t = LoadTexture("cat.png");
+	SetTargetFPS(60);
+	
+	while (!WindowShouldClose()) {
+		BeginDrawing();
+		DrawTexture(t, 0.8, 0.6, WHITE);
+		EndDrawing();
+	}
+	UnloadTexture(t);
+	CloseWindow();
+	return 0;
+}
+```
 ## tree
