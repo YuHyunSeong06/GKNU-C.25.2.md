@@ -64,6 +64,7 @@ int main(void) {
 }
 ```
 ## tree
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -118,3 +119,4 @@ int main(void) {
     free_tree(root);
     return 0;
 }
+```
