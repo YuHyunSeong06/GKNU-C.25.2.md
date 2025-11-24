@@ -101,3 +101,36 @@ int main() {
 	printf("앞면 : %d회 \n뒷면 : %d회", heads, tails);
 }
 ```
+### 5. 함수의 포인터
+```c
+#include <stdio.h>
+
+int add(int a, int b) {
+	return a + b;
+}
+int main() {
+	int(*sum)(int, int) = add;
+	int a = 3, b = 2;
+	printf("%d\n", sum(a, b));
+	return 0;
+}
+```
+### 6. 두 수를 파일 my.txt에 저장하시오.
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 2, b = 3;
+    FILE* fp;
+    fp = fopen("my.txt", "w");
+    fprintf(fp, "%d %d", a, b);
+    fclose(fp);
+    fp = fopen("my.txt", "r");
+    fscanf(fp, "%d %d", &a, &b);
+    fclose(fp);
+
+    printf("%d %d %d", a, b, a + b);
+
+    return 0;
+}
+```
