@@ -65,3 +65,21 @@ int main() {
 ```
 ### 3. 이진 바이너리 구조체를 typedef로 정의하시오.
 ### 4. 동전을 1000번 던질 때 앞면 과 뒷면이 나올 회수를 시뮬레이션하는 코드를 작성하시오.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void main() {
+	int h[2] = { 0 };
+	srand(time(NULL));
+	for (int i = 0; i < 1000;i++) {
+		int n = rand();
+		n = n % 2;
+		h[n] = h[n] + 1;
+	}
+	for (int j = 0;j < 2;j++) {
+		printf("[%d]=%d\n", j + 1, h[j]);
+	}
+}
+```
