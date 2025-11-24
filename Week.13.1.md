@@ -48,3 +48,18 @@ int main() {
 }
 
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	int* buf;
+	buf = (int*)malloc(sizeof(int*) * 100);
+	for (int i = 0;i < 100;i++) {
+		buf[i] = i + 1;
+	}
+	for (int i = 0;i < 100;i++) {
+		printf("%d ", buf[i]);
+	}
+}
+```
