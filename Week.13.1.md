@@ -83,3 +83,21 @@ void main() {
 	}
 }
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+	int heads = 0;
+	int tails = 0;
+	srand(time(NULL));
+	for (int i = 0; i < 1000;i++) {
+		if (rand() % 2 == 0)
+			heads++;
+		else
+			tails++;
+	}
+	printf("앞면 : %d회 \n뒷면 : %d회", heads, tails);
+}
+```
