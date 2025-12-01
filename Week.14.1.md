@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 int main(void) {
+	char a[10]="apple";
 	char* a;
 	a = (char *)malloc(6);
 	strcpy(a, "apple");
