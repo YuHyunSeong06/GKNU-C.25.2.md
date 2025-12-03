@@ -53,3 +53,18 @@ int main(void) {
 	printf("결과: %d\n", a);
 }
 ```
+##### 설명 필요
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp = (const void* a, const void* b){
+	return(*(int*)a - *(int*)b);
+}
+int main() {
+	int a[5] = { 2,1,5,3,4 };
+	qsort(a, 5, sizeof(int), cmp);
+	for (int i = 0;i < 5;i++)
+		printf("%d ", a[i]);
+}
+```
