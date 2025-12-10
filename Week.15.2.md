@@ -26,3 +26,5 @@ char** ch; // 이중 포인터
 int main(int argc, char** argv){
 or
 int main(int argc, char* argv[]){
+```
+##### 명령행 매개 변수로 두 수를 나누는 프로그램을 작성하시오.
