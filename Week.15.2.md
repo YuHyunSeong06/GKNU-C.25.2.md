@@ -48,3 +48,12 @@ int main(int c, char** v){
   return 0;
 }
 ```
+WSL에서 C언어를 컴파일 하기 까지의 과정을 자세히 적으시오
+WSL을 관리자 권한으로 실행
+```
+gcc -o main main.c
+./main
+
+cc shim.c
+./a.out
+``` 
