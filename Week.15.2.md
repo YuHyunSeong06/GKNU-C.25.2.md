@@ -27,21 +27,21 @@ int main(int argc, char** argv){
 or
 int main(int argc, char* argv[]){
 ```
-##### 명령행 매개 변수로 계산기 프로그램을 작성하시오.
+##### 명령행 매개 변수로 듀 수를 가감승제 계산기 프로그램을 작성하시오.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int c, cha** v){
-  double n1 = ator(v[1]);
+int main(int c, char** v){
+  double n1 = atof(v[1]);
   char o =v[2][0];
-  double n2 = ator(vp3[);
+  double n2 = ator(v[3]);
   double r=0.0;
   switch(o){
-    case '+': r = n1+ n2; break;
-    case '+': r = n1+ n2; break;
-    case '+': r = n1+ n2; break;
-    case '+': r = n1+ n2; break;
+    case '+': r = n1 + n2; break;
+    case '-': r = n1 - n2; break;
+    case '*': r = n1 * n2; break;
+    case '/': r = n1 / n2; break;
     default: return;
   }
 printf("%.2f %c %.2f = %.2f\n", n1, o, n2, r);
