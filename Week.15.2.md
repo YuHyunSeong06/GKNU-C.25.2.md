@@ -35,7 +35,7 @@ int main(int argc, char* argv[]){
 int main(int c, char** v){
   double n1 = atof(v[1]);
   char o =v[2][0];
-  double n2 = ator(v[3]);
+  double n2 = atof(v[3]);
   double r=0.0;
   switch(o){
     case '+': r = n1 + n2; break;
@@ -44,7 +44,7 @@ int main(int c, char** v){
     case '/': r = n1 / n2; break;
     default: return;
   }
-printf("%.2f %c %.2f = %.2f\n", n1, o, n2, r);
-return 0;
+  printf("%.2f %c %.2f = %.2f\n", n1, o, n2, r);
+  return 0;
 }
 ```
