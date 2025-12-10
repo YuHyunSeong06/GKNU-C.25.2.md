@@ -27,9 +27,9 @@ int main(int argc, char** argv){
 or
 int main(int argc, char* argv[]){
 ```
-##### 명령행 매개 변수로 두 수를 나누는 프로그램을 작성하시오.
-```
-#include <stdio.>
+##### 명령행 매개 변수로 계산기 프로그램을 작성하시오.
+```c
+#include <stdio.h>
 #include <stdlib.h>
 
 int main(int c, cha** v){
@@ -47,3 +47,4 @@ int main(int c, cha** v){
 printf("%.2f %c %.2f = %.2f\n", n1, o, n2, r);
 return 0;
 }
+```
