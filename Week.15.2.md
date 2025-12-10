@@ -27,7 +27,7 @@ int main(int argc, char** argv){
 or
 int main(int argc, char* argv[]){
 ```
-##### 명령행 매개 변수로 듀 수를 가감승제 계산기 프로그램을 작성하시오.
+##### 명령행 매개 변수로 두 수를 가감승제 계산기 프로그램을 작성하시오.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,3 +57,5 @@ gcc -o main main.c
 cc shim.c
 ./a.out
 ``` 
+이번학기에 공부했던 내용을 간략히 적으시오.
+. 강의계획서 참고
