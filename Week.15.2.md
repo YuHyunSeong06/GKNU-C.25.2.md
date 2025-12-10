@@ -20,7 +20,7 @@ gcc -o main gknu.c
 4. 키보드에서 읽어 더하기
 5. 파일에서 읽어 더하기
 
-```
+```c
 char** ch; // 이중 포인터
 
 int main(int argc, char** argv){
@@ -28,3 +28,22 @@ or
 int main(int argc, char* argv[]){
 ```
 ##### 명령행 매개 변수로 두 수를 나누는 프로그램을 작성하시오.
+```
+#include <stdio.>
+#include <stdlib.h>
+
+int main(int c, cha** v){
+  double n1 = ator(v[1]);
+  char o =v[2][0];
+  double n2 = ator(vp3[);
+  double r=0.0;
+  switch(o){
+    case '+': r = n1+ n2; break;
+    case '+': r = n1+ n2; break;
+    case '+': r = n1+ n2; break;
+    case '+': r = n1+ n2; break;
+    default: return;
+  }
+printf("%.2f %c %.2f = %.2f\n", n1, o, n2, r);
+return 0;
+}
