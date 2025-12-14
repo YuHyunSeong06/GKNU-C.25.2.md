@@ -159,3 +159,56 @@ int main(void) {
     return 0; // main 함수 종료 (선택 사항)
 } // [수정] 닫는 중괄호 추가
 ```
+
+### 9.순서정렬 알고리즘 중에 하나를 선택하여, C언어로 코딩을 하시오.
+```c
+#include <stdio.h>
+
+// 인접한 두 값을 비교하여 큰 값을 뒤로 보내는 정렬
+void bubble(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - 1 - i; j++)
+            if (a[j] > a[j + 1]) {
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+}
+
+int main(void) {
+    int a[] = {5, 1, 4, 2, 8};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    bubble(a, n);
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    return 0;
+}
+```
+### 다음 C언어에 적합한 키워드를 넣으시오.
+```c
+#include <stdio.h>
+
+typedef enum { RES_OK, RES_ERR } ResKind;   // 상태 구분
+											// enum 빈칸
+typedef struct {							// struct 빈칸
+    ResKind kind;    // 현재 상태
+    union {          // 같은 메모리를 공유	// union 빈칸
+        int value;           // 성공 시 값
+        const char* msg;     // 실패 시 메시지
+    } u;
+} Result;
+
+int main(void) {
+    Result ok  = { RES_OK,  .u.value = 123 };
+    Result err = { RES_ERR, .u.msg = "oops" };
+
+    if (ok.kind == RES_OK)
+        printf("OK: %d\n", ok.u.value);
+    else
+        printf("ERR: %s\n", ok.u.msg);
+
+    return 0;
+}
+```
