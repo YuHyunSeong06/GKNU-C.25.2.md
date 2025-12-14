@@ -119,3 +119,43 @@ cl math.c
 math 10 + 20
 math 10 * 20
 ```
+
+### 8.퀵소트 알고리즘을 완성하시오.
+```c
+#include <stdio.h>
+
+void q(int* a, int l, int r) {
+    if (l >= r) return;
+
+    int p = a[r], i = l - 1, t;
+
+    for (int j = l; j < r; j++) {
+        if (a[j] <= p) {
+            t = a[++i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+    }
+    t = a[i + 1];
+    a[i + 1] = a[r];
+    a[r] = t;
+    
+    q(a, l, i);
+    q(a, i + 2, r);
+}
+
+int main(void) {
+    int a[] = { 2, 1, 5, 3, 4 };
+    int n = sizeof(a) / sizeof(a[0]);
+
+    // [수정] l과 r 대신 0(시작)과 n-1(끝)을 전달해야 합니다.
+    q(a, 0, n - 1); 
+
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n"); // 줄바꿈 추가 (선택 사항)
+
+    return 0; // main 함수 종료 (선택 사항)
+} // [수정] 닫는 중괄호 추가
+```
