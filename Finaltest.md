@@ -40,20 +40,17 @@ sub.o: sub.c
 리스트 스택 큐 트리 해시
 ```
 
-칸          int value;           // 성공 시 값
-        const char* msg;     // 실패 시 메시지
-    } u;
-} Result;
-
-int main(void) {
-    Result ok  = { RES_OK,  .u.value = 123 };
-    Result err = { RES_ERR, .u.msg = "oops" };
-
-    if (ok.kind == RES_OK)
-        printf("OK: %d\n", ok.u.value);
-    else
-        printf("ERR: %s\n", ok.u.msg);
-
-    return 0;
-}
+### 4.메모리에 두 수를 저장하고 그 중에 작은 수를 출력하는 "슈도 코드"를 작성하시오
 ```
+a ← 7
+b ← 3
+
+IF a ≤ b THEN
+    PRINT a
+ELSE
+    PRINT b
+END IF
+```
+
+### 5.메모리에 두 수를 저장하고 그 중에 작은 수를 찾는 "플로우 차트"를 그리시오.
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/dc0ecd95-459d-45de-baa7-0806da255570" />
