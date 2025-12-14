@@ -20,4 +20,20 @@ lib /OUT:my.lib add.obj sub.obj
 cl main.c my.lib
 main.exe
 ```
-### 2.
+### 2.wsl에서 두 함수 add.c sub.c를 main.c에서 호출하는 프로젝트의 make문을 작성하시오.
+```
+main: main.o add.o sub.o
+	gcc -o main main.o add.o sub.o
+
+main.o: main.c
+	gcc -c main.c
+
+add.o: add.c
+	gcc -c add.c
+
+sub.o: sub.c
+	gcc -c sub.c
+```
+
+### 3.C언어의 대표적인 자료구조 5가지
+ㅅ
