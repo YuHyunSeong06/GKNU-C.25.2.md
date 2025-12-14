@@ -20,6 +20,8 @@ lib /OUT:my.lib add.obj sub.obj
 cl main.c my.lib
 main.exe
 ```
+
+
 ### 2. wsl에서 두 함수 add.c sub.c를 main.c에서 호출하는 프로젝트의 make문을 작성하시오.
 ```
 main: main.o add.o sub.o
@@ -35,10 +37,12 @@ sub.o: sub.c
 	gcc -c sub.c
 ```
 
+
 ### 3. C언어의 대표적인 자료구조 5가지
 ```
 리스트 스택 큐 트리 해시
 ```
+
 
 ### 4. 메모리에 두 수를 저장하고 그 중에 작은 수를 출력하는 "슈도 코드"를 작성하시오
 ```
@@ -52,8 +56,10 @@ ELSE
 END IF
 ```
 
+
 ### 5. 메모리에 두 수를 저장하고 그 중에 작은 수를 찾는 "플로우 차트"를 그리시오.
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/dc0ecd95-459d-45de-baa7-0806da255570" />
+
 
 ### 6. 1부터 50까지 중에 5의 배수를 출력하는 코드를 작성하시오.
 ```c
@@ -69,6 +75,7 @@ int main(void) {
     return 0; // main 함수 종료 시 0 반환
 }
 ```
+
 
 ### 7. 명랭행 프롬포트에서 다음처럼 입력할 때 +와 -, *, /가 실행 된는 계산기 프로그램을 switch 문으로 구현하시오
 ```
@@ -120,6 +127,7 @@ math 10 + 20
 math 10 * 20
 ```
 
+
 ### 8. 퀵소트 알고리즘을 완성하시오.
 ```c
 #include <stdio.h>
@@ -160,6 +168,7 @@ int main(void) {
 } // [수정] 닫는 중괄호 추가
 ```
 
+
 ### 9. 순서정렬 알고리즘 중에 하나를 선택하여, C언어로 코딩을 하시오.
 ```c
 #include <stdio.h>
@@ -186,6 +195,8 @@ int main(void) {
     return 0;
 }
 ```
+
+
 ### 10. 다음 C언어에 적합한 키워드를 넣으시오.
 ```c
 #include <stdio.h>
