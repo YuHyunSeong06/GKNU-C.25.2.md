@@ -59,6 +59,7 @@ END IF
 
 ### 5. 메모리에 두 수를 저장하고 그 중에 작은 수를 찾는 "플로우 차트"를 그리시오.
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/dc0ecd95-459d-45de-baa7-0806da255570" />
+
 ---
 
 ### 6. 1부터 50까지 중에 5의 배수를 출력하는 코드를 작성하시오.
