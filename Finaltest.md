@@ -164,6 +164,33 @@ int main() {
 }
 ```
 ---
+### 9. 순서정렬 알고리즘을 코딩하시오
+```c
+#include <stdio.h>
+
+// 인접한 두 값을 비교하여 큰 값을 뒤로 보내는 정렬
+void bubble(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - 1 - i; j++)
+            if (a[j] > a[j + 1]) {
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+}
+
+int main(void) {
+    int a[] = {5, 1, 4, 2, 8};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    bubble(a, n);
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    return 0;
+}
+```
+---
 ### 10. 다음 C언어 코드에 적합한 키워드를 넣으시오.
 ```c
 #include <stdio.h>
@@ -251,6 +278,17 @@ void q(int* a, int l, int r) {
     
     // 재귀 호출: 피벗을 제외한 오른쪽 부분 배열 정렬
     q(a, i+2, r); 
+```
+```c
+재귀함수
+#include <stdio.h>
+int fact(int n) {
+    if(n == 1) return 1;
+    return n * fact(n-1);}
+int main() {
+    printf("5!: %d\n", fact(5));
+    return 0;
+}
 ```
 ---
 
