@@ -4,7 +4,7 @@
 ###### 알고리즘 5가지
 ###### 퀵소트 구현
 ###### 연결리스트 구현
-
+---
 ### 1. Visual Studio 환경에서 두 함수 add.c sub.c를 my.lib로 만들고 main.c에서 호출할 때 사용하는 명령을 차례대로 적으시오.
 ```
 notepad add.c
@@ -22,7 +22,7 @@ main.exe
 ```
 ---
 
-### 2. wsl에서 두 함수 add.c sub.c를 main.c에서 호출하는 프로젝트의 make문을 작성하시오.
+### 2. WSL에서 두 함수 add.c sub.c를 main.c에서 호출하는 프로젝트의 make문을 작성하시오.
 ```
 main: main.o add.o sub.o
 	gcc -o main main.o add.o sub.o
