@@ -225,3 +225,30 @@ int main(void) {
 }
 ```
 ---
+### 자료구조 1문항
+```c
+#include <stdio.h>
+
+struct Node {
+	int data;
+	struct Node* next;
+};
+
+int main(void) {
+	struct Node n1, n2, n3;
+	struct Node* head;
+	struct Node* p;
+
+	n1.data = 3; n2.data = 2; n3.data = 1;
+	n1.next = &n2; n2.next = &n3; n3.next = NULL;
+	head = &n1;
+	p = head;
+	while (p != NULL) {
+		printf("%d", p->data);
+		if (p->next != NULL) {
+			printf("->");
+		}
+		p = p->next;
+	}
+}
+```
