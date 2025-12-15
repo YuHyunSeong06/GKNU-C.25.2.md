@@ -163,23 +163,113 @@ int main() {
     return 0;
 }
 ```
-### 시뮬레이션 1문항
+---
+### 10. 다음 C언어 코드에 적합한 키워드를 넣으시오.
+```c
+#include <stdio.h>
+
+typedef enum { RES_OK, RES_ERR } ResKind;   // 상태 구분
+
+typedef struct {
+    ResKind kind;    // 현재 상태
+    union {          // 같은 메모리를 공유
+        int value;           // 성공 시 값
+        const char* msg;     // 실패 시 메시지
+    } u;
+} Result;
+
+int main(void) {
+    Result ok  = { RES_OK,  .u.value = 123 };
+    Result err = { RES_ERR, .u.msg = "oops" };
+
+    if (ok.kind == RES_OK)
+        printf("OK: %d\n", ok.u.value);
+    else
+        printf("ERR: %s\n", ok.u.msg);
+
+    return 0;
+}
 ```
+---
+
+### 자료구조 1문항
+```c
+#include <stdio.h>
+
+typedef struct Node {
+	int data;
+	struct Node* next;
+}Node;
+
+int main(void) {
+	Node n1, n2, n3;
+
+	n1.data = 3; n2.data = 2; n3.data = 1;
+	n1.next = &n2; n2.next = &n3; n3.next = NULL;
+
+	Node* head = &n1; // head는 3을 가리키도록
+	Node* p = head;
+
+	while (p != NULL) {
+		printf("%d -> ", p->data);
+		p = p->next;
+	}
+	printf("NULL\n");
+	return 0;
+}
+```
+---
+
+### 알고리즘 1문항
+```c
+#include <stdio.h>
+
+void q(int* a, int l, int r) {
+    if (l >= r) return;
+
+    // 로무토 분할 (Lomuto Partition)
+    int p = a[r]; // 피벗 (가장 오른쪽 요소)
+    int i = l - 1; 
+    int t; // 교환을 위한 임시 변수
+
+    for (int j = l; j < r; j++) {
+        if (a[j] <= p) {
+            // 작은 요소를 발견하면 i를 증가시키고 교환
+            t = a[++i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+    }
+
+    // 피벗(a[r])을 정렬 위치 (i+1)로 이동
+    t = a[i + 1];
+    a[i + 1] = a[r]; 
+    a[r] = t;
+
+    // 재귀 호출: 피벗을 제외한 왼쪽 부분 배열 정렬
+    q(a, l, i); 
+    
+    // 재귀 호출: 피벗을 제외한 오른쪽 부분 배열 정렬
+    q(a, i+2, r); 
+```
+---
+
+### 시뮬레이션 1문항
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void main() {
-	int h[6] = { 0 };
+int main() {
+	int heads = 0;
+	int tails = 0;
 	srand(time(NULL));
-	for (int i = 0; i < 60;i++) {
-		int n = rand();
-		n = n % 6;
-		h[n] = h[n] + 1;
+	for (int i = 0; i < 1000;i++) {
+		if (rand() % 2 == 0)
+			heads++;
+		else
+			tails++;
 	}
-```
-	for (int j = 0;j < 6;j++) {
-		printf("[%d]=%d\n", j+1,h[j]);
-	}
+	printf("앞면 : %d회 \n뒷면 : %d회", heads, tails);
 }
 ```
