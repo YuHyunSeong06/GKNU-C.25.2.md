@@ -1,4 +1,90 @@
-C-1
+## A-1
+```c
+#include <raylib.h>
+#include <stdio.h>
+
+// 원의 기본 속성 정의
+#define CIRCLE_RADIUS 30.0f
+#define MOVEMENT_SPEED 5.0f
+
+int main(void)
+{
+    // 1. 초기화 (Initialization)
+    // 창 크기 설정
+    const int screenWidth = 800;
+    const int screenHeight = 450;
+
+    // raylib 창 초기화
+    InitWindow(screenWidth, screenHeight, "raylib - Moving Circle Example");
+
+    // 원의 초기 위치: 화면 중앙
+    Vector2 circlePosition = { 
+        (float)screenWidth / 2.0f, 
+        (float)screenHeight / 2.0f 
+    };
+
+    // 게임 루프 실행을 위한 프레임 속도 설정 (선택 사항이지만 부드러운 움직임에 도움됨)
+    SetTargetFPS(60); 
+
+    // 2. 메인 게임 루프 (Main Game Loop)
+    // 창 닫기 버튼을 누르거나 ESC 키를 누르기 전까지 루프 반복
+    while (!WindowShouldClose())
+    {
+        // 3. 업데이트 (Update)
+        // 방향키 입력 처리
+        if (IsKeyDown(KEY_RIGHT)) {
+            circlePosition.x += MOVEMENT_SPEED;
+        }
+        if (IsKeyDown(KEY_LEFT)) {
+            circlePosition.x -= MOVEMENT_SPEED;
+        }
+        if (IsKeyDown(KEY_UP)) {
+            circlePosition.y -= MOVEMENT_SPEED; // raylib에서 Y축은 아래로 증가
+        }
+        if (IsKeyDown(KEY_DOWN)) {
+            circlePosition.y += MOVEMENT_SPEED;
+        }
+
+        // 화면 경계를 벗어나지 않도록 제한
+        // X축 제한
+        if (circlePosition.x < CIRCLE_RADIUS) {
+            circlePosition.x = CIRCLE_RADIUS;
+        } else if (circlePosition.x > screenWidth - CIRCLE_RADIUS) {
+            circlePosition.x = screenWidth - CIRCLE_RADIUS;
+        }
+
+        // Y축 제한
+        if (circlePosition.y < CIRCLE_RADIUS) {
+            circlePosition.y = CIRCLE_RADIUS;
+        } else if (circlePosition.y > screenHeight - CIRCLE_RADIUS) {
+            circlePosition.y = screenHeight - CIRCLE_RADIUS;
+        }
+        
+        // 4. 그리기 (Drawing)
+        BeginDrawing();
+
+        // 배경을 검은색으로 설정
+        ClearBackground(BLACK);
+
+        // 현재 위치에 초록색 원을 그림
+        DrawCircleV(circlePosition, CIRCLE_RADIUS, LIME);
+
+        // 현재 원의 좌표를 화면에 표시 (디버깅용)
+        DrawText(TextFormat("Pos: (%.0f, %.0f)", circlePosition.x, circlePosition.y), 10, 10, 20, WHITE);
+        DrawText("Use Arrow Keys to Move", 10, screenHeight - 30, 20, WHITE);
+
+
+        EndDrawing();
+    }
+
+    // 5. 종료 (De-Initialization)
+    // 창 및 OpenGL 컨텍스트 닫기
+    CloseWindow();
+
+    return 0;
+}
+```
+## C-1
 ```c
 #include <raylib.h>
 #include <stdlib.h> // rand(), srand()
@@ -239,4 +325,257 @@ int main(void)
 
     return 0;
 }
-````
+```
+## C-2
+```c
+#include "raylib.h"
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+#include <math.h>
+
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+
+typedef struct {
+    Color color;
+    int score;
+} BlockColor;
+
+BlockColor blockColors[100];
+
+// 게임 초기화 함수
+void InitGame(int difficulty, Rectangle* paddle, Vector2* ball, Vector2* speed, int* score, int* lives, double* startTime, int* blockCount, float* paddleSpeed) {
+    switch (difficulty) {
+    case 1: // HARD
+        paddle->width = 80;
+        *speed = (Vector2){ 6, -6 };
+        *blockCount = 48;
+        break;
+    case 2: // MEDIUM
+        paddle->width = 100;
+        *speed = (Vector2){ 5, -5 };
+        *blockCount = 36;
+        break;
+    case 3: // EASY
+        paddle->width = 120;
+        *speed = (Vector2){ 4, -4 };
+        *blockCount = 12;
+        break;
+    default:
+        paddle->width = 100;
+        *speed = (Vector2){ 5, -5 };
+        *blockCount = 36;
+        break;
+    }
+
+    *paddleSpeed = 8.0f;
+    paddle->height = 20;
+    paddle->x = SCREEN_WIDTH / 2.0f - paddle->width / 2.0f;
+    paddle->y = SCREEN_HEIGHT - 30.0f;
+
+    *ball = (Vector2){ SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
+    *score = 0;
+    *lives = 3;
+    *startTime = GetTime();
+
+    // 블록 색상 및 점수 설정
+    for (int i = 0; i < *blockCount; i++) {
+        blockColors[i].score = 0;
+        int colorIndex = rand() % 6;
+        switch (colorIndex) {
+        case 0: blockColors[i].color = RED; blockColors[i].score = 10; break;
+        case 1: blockColors[i].color = ORANGE; blockColors[i].score = 7; break;
+        case 2: blockColors[i].color = YELLOW; blockColors[i].score = 5; break;
+        case 3: blockColors[i].color = GREEN; blockColors[i].score = 3; break;
+        case 4: blockColors[i].color = BLUE; blockColors[i].score = 2; break;
+        case 5: blockColors[i].color = PURPLE; blockColors[i].score = 1; break;
+        }
+    }
+}
+
+// 모든 블록이 제거되었는지 확인하는 함수
+bool AreAllBlocksCleared(int blockCount) {
+    for (int i = 0; i < blockCount; i++) {
+        if (blockColors[i].score > 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Block Breaker - Basic");
+    SetTargetFPS(60);
+    InitAudioDevice();
+
+    srand((unsigned int)time(NULL));
+
+    Rectangle paddle = { 0 }; // 초기화 추가
+    Vector2 ball = { 0 };     // 초기화 추가
+    Vector2 speed = { 0 };    // 초기화 추가
+    int score = 0;
+    int lives = 3;
+    int gameState = 0; // 0: Menu, 1: Gameplay, 2: GameOver, 3: Win
+    double startTime = 0;
+    double totalTime = 0;
+    int blockCount = 36;
+    float paddleSpeed = 8.0f;
+    bool flawless = true;
+
+    // 리소스 로드
+    Music bgm = LoadMusicStream("bgm.mp3");
+    Sound hitSound = LoadSound("hit.wav");
+
+    // IsMusicReady 제거 (구버전 호환성 및 링크 에러 해결)
+    PlayMusicStream(bgm);
+
+    while (!WindowShouldClose()) {
+        // --- 메뉴 화면 ---
+        if (gameState == 0) {
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawText("START PRESS KEY 1", SCREEN_WIDTH / 2 - 130, SCREEN_HEIGHT / 2 - 20, 20, WHITE);
+            DrawText("QUIT PRESS KEY 0", SCREEN_WIDTH / 2 - 130, SCREEN_HEIGHT / 2 + 20, 20, WHITE);
+            EndDrawing();
+
+            if (IsKeyPressed(KEY_ONE)) {
+                int difficulty = 0;
+                while (difficulty < 1 || difficulty > 3) {
+                    if (WindowShouldClose()) break;
+
+                    BeginDrawing();
+                    ClearBackground(BLACK);
+                    DrawText("Select Level:", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 40, 20, WHITE);
+                    DrawText("HARD: 1, MEDIUM: 2, EASY: 3", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2, 20, WHITE);
+                    EndDrawing();
+
+                    if (IsKeyPressed(KEY_ONE)) difficulty = 1;
+                    if (IsKeyPressed(KEY_TWO)) difficulty = 2;
+                    if (IsKeyPressed(KEY_THREE)) difficulty = 3;
+                }
+
+                if (difficulty != 0) {
+                    InitGame(difficulty, &paddle, &ball, &speed, &score, &lives, &startTime, &blockCount, &paddleSpeed);
+                    flawless = true;
+                    gameState = 1;
+                }
+                else {
+                    break;
+                }
+            }
+            if (IsKeyPressed(KEY_ZERO)) break;
+        }
+
+        // --- 게임 플레이 화면 ---
+        if (gameState == 1) {
+            // IsMusicReady 제거
+            UpdateMusicStream(bgm);
+
+            if (IsKeyDown(KEY_LEFT)) paddle.x -= paddleSpeed;
+            if (IsKeyDown(KEY_RIGHT)) paddle.x += paddleSpeed;
+
+            if (paddle.x < 0) paddle.x = 0;
+            if (paddle.x > SCREEN_WIDTH - paddle.width) paddle.x = SCREEN_WIDTH - paddle.width;
+
+            ball.x += speed.x;
+            ball.y += speed.y;
+
+            if (ball.x < 0 || ball.x > SCREEN_WIDTH) speed.x *= -1;
+            if (ball.y < 0) speed.y *= -1;
+
+            if (ball.y > SCREEN_HEIGHT) {
+                lives--;
+                flawless = false;
+                ball = (Vector2){ SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
+                if (lives <= 0) gameState = 2;
+            }
+
+            if (CheckCollisionCircleRec(ball, 10, paddle)) {
+                speed.y *= -1;
+                ball.y = paddle.y - 10 - 1;
+            }
+
+            for (int i = 0; i < blockCount; i++) {
+                if (blockColors[i].score > 0) {
+                    // C4244 경고 해결: (float) 형변환 추가
+                    Rectangle blockRect = {
+                        (float)(20 + (i % 12) * 63),
+                        (float)(50 + (i / 12) * 30),
+                        60.0f,
+                        20.0f
+                    };
+
+                    if (CheckCollisionCircleRec(ball, 10, blockRect)) {
+                        score += blockColors[i].score;
+                        blockColors[i].score = 0;
+                        speed.y *= -1;
+
+                        // IsSoundReady 제거
+                        PlaySound(hitSound);
+
+                        break;
+                    }
+                }
+            }
+
+            if (AreAllBlocksCleared(blockCount)) {
+                totalTime = GetTime() - startTime;
+                gameState = 3;
+            }
+
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawRectangleRec(paddle, WHITE);
+            DrawCircleV(ball, 10, WHITE);
+
+            for (int i = 0; i < blockCount; i++) {
+                if (blockColors[i].score > 0) {
+                    DrawRectangle(20 + (i % 12) * 63, 50 + (i / 12) * 30, 60, 20, blockColors[i].color);
+                }
+            }
+
+            DrawText(TextFormat("SCORE: %d", score), SCREEN_WIDTH - 150, 10, 20, WHITE);
+            DrawText(TextFormat("LIFE: %d", lives), 10, 10, 20, WHITE);
+
+            double elapsedTime = GetTime() - startTime;
+            int minutes = (int)(elapsedTime / 60);
+            int seconds = (int)fmod(elapsedTime, 60);
+            DrawText(TextFormat("TIME: %02d:%02d", minutes, seconds), SCREEN_WIDTH - 150, SCREEN_HEIGHT - 30, 20, WHITE);
+            EndDrawing();
+        }
+
+        // --- 게임 오버 ---
+        else if (gameState == 2) {
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawText("GAME OVER!!! RESTART PRESS 'r' QUIT PRESS 'Esc'", SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2, 20, WHITE);
+            EndDrawing();
+
+            if (IsKeyPressed(KEY_R)) gameState = 0;
+            if (IsKeyPressed(KEY_ESCAPE)) break;
+        }
+
+        // --- 승리 ---
+        else if (gameState == 3) {
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawText("CONGRATULATIONS! YOU WIN!", SCREEN_WIDTH / 2 - 180, SCREEN_HEIGHT / 2 - 60, 20, WHITE);
+            if (flawless && totalTime <= 60.0) {
+                DrawText("FLAWLESS", SCREEN_WIDTH / 2 - 120, SCREEN_HEIGHT / 2 - 10, 40, GOLD);
+            }
+            DrawText("RESTART PRESS 'r'  |  QUIT PRESS 'Esc'", SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 + 40, 20, WHITE);
+            EndDrawing();
+
+            if (IsKeyPressed(KEY_R)) gameState = 0;
+            if (IsKeyPressed(KEY_ESCAPE)) break;
+        }
+    }
+
+    // IsMusicReady, IsSoundReady 제거
+    UnloadMusicStream(bgm);
+    UnloadSound(hitSound);
+    CloseAudioDevice();
+    CloseWindow();
+
+    return 0;
+}
+```
